@@ -24,6 +24,11 @@ function App() {
     }
   }
 
+  const removeTour = async (id) => {
+    const newTours = toursList.filter((tour) => tour.id != id);
+    setToursList(newTours);
+  };
+
   useEffect(() => { fetchTours(); }, []);
 
   if (loading) {
@@ -34,7 +39,21 @@ function App() {
     );
   }
 
-  return <main><Tours toursList={toursList} /></main>
+  if (toursList.length === 0) {
+    return (
+      <main>
+        <div className="title">
+          <h2>no tours left</h2>
+
+          <button className='btn' onClick={fetchTours}>
+            refresh
+          </button>
+        </div>
+      </main>
+    );
+  }
+
+  return <main><Tours toursList={toursList} removeTour={removeTour} /></main>
 }
 
 export default App

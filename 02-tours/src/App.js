@@ -25,7 +25,7 @@ function App() {
   }
 
   const removeTour = async (id) => {
-    const newTours = toursList.filter((tour) => tour.id != id);
+    const newTours = toursList.filter((tour) => tour.id !== id);
     setToursList(newTours);
   };
 
